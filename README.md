@@ -2,7 +2,7 @@
 <h3 align="center">Un apasionado desarrollador de bots para WhatsApp</h3>
 
 <p align="center">
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&vCenter=true&random=true&width=435&lines=Desarrollador+de+Ruby-hoshino-Bot;Creador+de+Ellen-Joe-Bot-MD;Desarrollador+a+tiempo+parcial;%F0%9F%97%BF;%F0%9F%8D%9E%F0%9F%97%BF)](https://git.io/typing-svg)
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&vCenter=true&random=true&width=435&lines=Desarrollador+de+Ruby-hoshino-Bot;Creador+de+Ellen-Joe-Bot-MD;Desarrollador+a+tiempo+parcial;%F0%9F%97%BF;%F0%9F%8D%9E%F0%9F%97%BF" alt="Typing SVG" /></a>
 </p>
 
 <br>

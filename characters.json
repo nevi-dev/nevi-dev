@@ -67,23 +67,6 @@
         "votes": 0
     },
     {
-        "id": "4",
-        "name": "Izuku Midoriya",
-        "gender": "Hombre",
-        "value": "1700",
-        "source": "My Hero Academia",
-        "img": [
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/izuku_midoriya/img_0.png",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/izuku_midoriya/img_1.png",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/izuku_midoriya/img_2.jpg",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/izuku_midoriya/img_3.jpg"
-        ],
-        "vid": [],
-        "user": null,
-        "status": "Libre",
-        "votes": 0
-    },
-    {
         "id": "5",
         "name": "Misa Amane",
         "gender": "Mujer",
@@ -8431,7 +8414,12 @@
         "gender": "Hombre",
         "value": "1480",
         "source": "Nanatsu no Taizai",
-        "img": [],
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/king/img_0.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/king/img_1.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/king/img_2.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/king/img_3.jpg"
+        ],
         "vid": [],
         "user": null,
         "status": "Libre",
@@ -9035,7 +9023,12 @@
         "gender": "Mujer",
         "value": "1436",
         "source": "Zenless Zone Zero",
-        "img": [],
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/jane_doe/img_0.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/jane_doe/img_1.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/jane_doe/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/jane_doe/img_3.png"
+        ],
         "vid": [],
         "user": null,
         "status": "Libre",
@@ -9353,7 +9346,12 @@
         "gender": "Hombre",
         "value": "1804",
         "source": "Honkai: Star Rail",
-        "img": [],
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/welt_yang/img_0.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/welt_yang/img_1.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/welt_yang/img_2.png",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/welt_yang/img_3.png"
+        ],
         "vid": [],
         "user": null,
         "status": "Libre",

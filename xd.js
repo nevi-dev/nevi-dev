@@ -16,6 +16,26 @@ const SCRAPER_HEADERS = {
     'referer': 'https://www.google.com/'
 };
 
+// --- FUNCIÓN DE DETECCIÓN DE "CÓDIGO" ---
+function isFileCorrupted(filePath) {
+    if (!fs.existsSync(filePath)) return true;
+    
+    // Leemos los primeros 100 bytes del archivo
+    const buffer = Buffer.alloc(100);
+    const fd = fs.openSync(filePath, 'r');
+    fs.readSync(fd, buffer, 0, 100, 0);
+    fs.closeSync(fd);
+
+    const content = buffer.toString().toLowerCase();
+    // Si contiene etiquetas comunes de HTML o scripts, es "código", no imagen
+    if (content.includes('<!doctype') || content.includes('<html') || 
+        content.includes('<xml') || content.includes('script>') || 
+        content.includes('forbidden') || content.includes('error')) {
+        return true;
+    }
+    return false;
+}
+
 async function fetchGoogleImages(charName, source) {
     const queries = [`${charName} ${source}`, `${charName}`];
     for (let query of queries) {
@@ -41,11 +61,7 @@ async function downloadImage(url, charName, index) {
         const folder = path.join(FOTOS_DIR, charFolderName);
         if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
 
-        let ext = 'jpg';
-        const match = url.match(/\.(jpg|jpeg|png|webp|gif)/i);
-        if (match) ext = match[1];
-
-        const fileName = `img_${index}.${ext}`;
+        const fileName = `img_${index}.jpg`;
         const finalPath = path.join(folder, fileName);
 
         const response = await axios({
@@ -60,7 +76,15 @@ async function downloadImage(url, charName, index) {
         response.data.pipe(writer);
 
         return new Promise((resolve) => {
-            writer.on('finish', () => resolve(`https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${charFolderName}/${fileName}`));
+            writer.on('finish', () => {
+                // VERIFICACIÓN INMEDIATA POST-DESCARGA
+                if (isFileCorrupted(finalPath)) {
+                    fs.unlinkSync(finalPath); // Borrar si es código
+                    resolve(null);
+                } else {
+                    resolve(`https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${charFolderName}/${fileName}`);
+                }
+            });
             writer.on('error', () => resolve(null));
         });
     } catch (e) { return null; }
@@ -68,55 +92,65 @@ async function downloadImage(url, charName, index) {
 
 async function run() {
     let db = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    let count = 0;
 
-    // Filtramos solo los que necesitan reparación: 
-    // Aquellos con Pinterest o aquellos que no tienen fotos en absoluto.
-    const toFix = db.filter(c => 
-        c.img.length === 0 || 
-        c.img.some(url => url.includes('pinimg.com'))
-    );
+    console.log("--- INICIANDO ESCANEO DE CARPETAS Y LIMPIEZA DE CÓDIGO ---");
 
-    console.log(`--- REPARANDO ${toFix.length} PERSONAJES EXISTENTES (SIN AGREGAR NUEVOS) ---`);
+    for (let char of db) {
+        const charFolderName = char.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const folderPath = path.join(FOTOS_DIR, charFolderName);
+        
+        let needsFix = false;
 
-    for (let char of toFix) {
-        // Doble seguridad: Si el primer link ya es GitHub, saltar.
-        if (char.img.length > 0 && char.img[0].includes('raw.githubusercontent.com')) {
-            continue;
+        // 1. Revisar si la carpeta existe y tiene archivos reales
+        if (!fs.existsSync(folderPath)) {
+            needsFix = true;
+        } else {
+            const files = fs.readdirSync(folderPath);
+            if (files.length === 0) {
+                needsFix = true;
+            } else {
+                // 2. Revisar si los archivos existentes son "código"
+                for (const file of files) {
+                    if (isFileCorrupted(path.join(folderPath, file))) {
+                        console.log(`[CORRUPTO] Detectado código en: ${char.name}/${file}. Borrando...`);
+                        fs.unlinkSync(path.join(folderPath, file));
+                        needsFix = true;
+                    }
+                }
+            }
         }
 
-        await limit(async () => {
-            console.log(`[Reparando] ${char.name} (${char.source || 'Sin fuente'})...`);
-            const urls = await fetchGoogleImages(char.name, char.source || "");
-            
-            const newPhotos = [];
-            for (let i = 0; i < urls.length; i++) {
-                const res = await downloadImage(urls[i], char.name, i);
-                if (res) newPhotos.push(res);
-            }
+        // Si detectamos que no tiene fotos o las que tiene son código:
+        if (needsFix) {
+            await limit(async () => {
+                console.log(`[Buscando] ${char.name} (${char.source})...`);
+                const urls = await fetchGoogleImages(char.name, char.source || "");
+                const newPhotos = [];
+                
+                for (let i = 0; i < urls.length; i++) {
+                    const res = await downloadImage(urls[i], char.name, i);
+                    if (res) newPhotos.push(res);
+                }
 
-            if (newPhotos.length >= 1) {
-                char.img = newPhotos;
-                console.log(`[OK] Migrado exitosamente.`);
-            } else {
-                console.log(`[AVISO] No se encontraron resultados para ${char.name}.`);
-            }
-            // Pequeña espera para no saturar a Google
-            await new Promise(r => setTimeout(r, 1500));
-        });
+                if (newPhotos.length > 0) {
+                    char.img = newPhotos;
+                    count++;
+                }
+                await new Promise(r => setTimeout(r, 1000));
+            });
+        }
     }
 
-    // Guardar los cambios en el JSON
     fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
+    console.log(`--- SE REPARARON ${count} PERSONAJES CON ARCHIVOS MALOS ---`);
 
     try {
-        console.log("--- SINCRONIZANDO CON GITHUB ---");
+        console.log("--- SUBIENDO LIMPIEZA A GITHUB ---");
         execSync('git add .');
-        execSync('git commit -m "Fix: Replaced Pinterest links and filled empty images for existing characters"');
+        execSync('git commit -m "Cleanup: Removed corrupted code files and replaced with real images"');
         execSync('git push origin main');
-        console.log("--- PROCESO COMPLETADO ---");
-    } catch (e) { 
-        console.error("Error Git (posiblemente nada nuevo para subir):", e.message); 
-    }
+    } catch (e) { console.error("Nada nuevo que subir."); }
 }
 
 run();

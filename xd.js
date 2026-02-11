@@ -7,55 +7,72 @@ import pLimit from 'p-limit';
 
 const FILE_PATH = './characters.json';
 const FOTOS_DIR = path.join(process.cwd(), 'fotos');
+const API_KEY = 'causa-ee5ee31dcfc79da4';
 const limit = pLimit(1); 
 
 const SCRAPER_HEADERS = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-    'accept-language': 'es-ES,es;q=0.9,en;q=0.8',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-    'referer': 'https://www.google.com/'
+    'accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
-// --- FUNCIÓN DE DETECCIÓN DE "CÓDIGO" ---
-function isFileCorrupted(filePath) {
-    if (!fs.existsSync(filePath)) return true;
+// --- FUNCIÓN PARA VALIDAR SI UN ARCHIVO ES REALMENTE UNA IMAGEN ---
+function isLocalFileBad(charName) {
+    const charFolderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const folderPath = path.join(FOTOS_DIR, charFolderName);
     
-    // Leemos los primeros 100 bytes del archivo
-    const buffer = Buffer.alloc(100);
-    const fd = fs.openSync(filePath, 'r');
-    fs.readSync(fd, buffer, 0, 100, 0);
-    fs.closeSync(fd);
+    if (!fs.existsSync(folderPath)) return true;
+    const files = fs.readdirSync(folderPath);
+    if (files.length === 0) return true;
 
-    const content = buffer.toString().toLowerCase();
-    // Si contiene etiquetas comunes de HTML o scripts, es "código", no imagen
-    if (content.includes('<!doctype') || content.includes('<html') || 
-        content.includes('<xml') || content.includes('script>') || 
-        content.includes('forbidden') || content.includes('error')) {
-        return true;
+    for (const file of files) {
+        const fullPath = path.join(folderPath, file);
+        const buffer = fs.readFileSync(fullPath);
+        const header = buffer.toString('utf8', 0, 100).toLowerCase();
+        
+        // Si el archivo empieza con etiquetas HTML o mensajes de error
+        if (header.includes('<html') || header.includes('<!doc') || header.includes('forbidden') || header.includes('error')) {
+            console.log(`[BASURA DETECTADA] Borrando archivo corrupto en: ${charName}`);
+            fs.unlinkSync(fullPath);
+            return true;
+        }
     }
     return false;
 }
 
-async function fetchGoogleImages(charName, source) {
-    const queries = [`${charName} ${source}`, `${charName}`];
-    for (let query of queries) {
-        try {
-            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=2`;
-            const response = await fetch(searchUrl, { headers: SCRAPER_HEADERS });
-            const html = await response.text();
-            const pattern = /\[1,\[0,"(?<id>[\d\w\-_]+)",\["https?:\/\/(?:[^"]+)",\d+,\d+\]\s?,\["(?<url>https?:\/\/(?:[^"]+))",\d+,\d+\]/gm;
-            const matches = [...html.matchAll(pattern)];
-            let urls = matches
-                .map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
-                .filter(v => v && !v.includes('gstatic.com') && /.*\.jpe?g|png|webp$/gi.test(v));
-
-            if (urls.length >= 1) return urls.slice(0, 4);
-        } catch (e) { continue; }
+// --- FUNCIÓN PARA VERIFICAR SI EL LINK EN EL JSON FUNCIONA ---
+async function isUrlDead(url) {
+    if (!url || !url.startsWith('http')) return true;
+    try {
+        const res = await axios.get(url, { timeout: 6000, headers: SCRAPER_HEADERS, responseType: 'arraybuffer' });
+        const start = res.data.toString('utf8', 0, 50).toLowerCase();
+        return start.includes('<html') || start.includes('<!doc');
+    } catch {
+        return true; 
     }
-    return [];
 }
 
-async function downloadImage(url, charName, index) {
+async function fetchNewPhotos(charName, source) {
+    // Intento 1: Google
+    try {
+        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(charName + ' ' + (source || ''))}&udm=2`;
+        const response = await fetch(searchUrl, { headers: SCRAPER_HEADERS });
+        const html = await response.text();
+        const pattern = /\[1,\[0,"(?<id>[\d\w\-_]+)",\["https?:\/\/(?:[^"]+)",\d+,\d+\]\s?,\["(?<url>https?:\/\/(?:[^"]+))",\d+,\d+\]/gm;
+        const matches = [...html.matchAll(pattern)];
+        let urls = matches.map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
+                   .filter(v => v && !v.includes('gstatic.com')).slice(0, 3);
+        if (urls.length > 0) return urls;
+    } catch {}
+
+    // Intento 2: Pinterest API
+    try {
+        const res = await fetch(`https://rest.apicausas.xyz/api/v1/buscadores/pinterest?q=${encodeURIComponent(charName + ' anime')}&apikey=${API_KEY}`);
+        const json = await res.json();
+        return json.status ? json.data.map(item => item.image).slice(0, 3) : [];
+    } catch { return []; }
+}
+
+async function downloadPhoto(url, charName, index) {
     try {
         const charFolderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
         const folder = path.join(FOTOS_DIR, charFolderName);
@@ -64,93 +81,58 @@ async function downloadImage(url, charName, index) {
         const fileName = `img_${index}.jpg`;
         const finalPath = path.join(folder, fileName);
 
-        const response = await axios({
-            url,
-            method: 'GET',
-            responseType: 'stream',
-            timeout: 10000,
-            headers: { ...SCRAPER_HEADERS, 'referer': (new URL(url)).origin }
-        });
+        const response = await axios({ url, method: 'GET', responseType: 'arraybuffer', timeout: 10000, headers: SCRAPER_HEADERS });
+        const start = response.data.toString('utf8', 0, 50).toLowerCase();
+        if (start.includes('<html') || start.includes('<!doc')) return null;
 
-        const writer = fs.createWriteStream(finalPath);
-        response.data.pipe(writer);
-
-        return new Promise((resolve) => {
-            writer.on('finish', () => {
-                // VERIFICACIÓN INMEDIATA POST-DESCARGA
-                if (isFileCorrupted(finalPath)) {
-                    fs.unlinkSync(finalPath); // Borrar si es código
-                    resolve(null);
-                } else {
-                    resolve(`https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${charFolderName}/${fileName}`);
-                }
-            });
-            writer.on('error', () => resolve(null));
-        });
-    } catch (e) { return null; }
+        fs.writeFileSync(finalPath, response.data);
+        return `https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${charFolderName}/${fileName}`;
+    } catch { return null; }
 }
 
 async function run() {
     let db = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
-    let count = 0;
+    let changes = 0;
 
-    console.log("--- INICIANDO ESCANEO DE CARPETAS Y LIMPIEZA DE CÓDIGO ---");
+    console.log(`--- INICIANDO AUDITORÍA DE ${db.length} PERSONAJES ---`);
 
     for (let char of db) {
-        const charFolderName = char.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        const folderPath = path.join(FOTOS_DIR, charFolderName);
-        
-        let needsFix = false;
+        // ¿El archivo local está mal o el link del JSON está muerto?
+        const localBad = isLocalFileBad(char.name);
+        const linkBad = char.img.length === 0 || await isUrlDead(char.img[0]);
 
-        // 1. Revisar si la carpeta existe y tiene archivos reales
-        if (!fs.existsSync(folderPath)) {
-            needsFix = true;
-        } else {
-            const files = fs.readdirSync(folderPath);
-            if (files.length === 0) {
-                needsFix = true;
-            } else {
-                // 2. Revisar si los archivos existentes son "código"
-                for (const file of files) {
-                    if (isFileCorrupted(path.join(folderPath, file))) {
-                        console.log(`[CORRUPTO] Detectado código en: ${char.name}/${file}. Borrando...`);
-                        fs.unlinkSync(path.join(folderPath, file));
-                        needsFix = true;
-                    }
-                }
-            }
-        }
-
-        // Si detectamos que no tiene fotos o las que tiene son código:
-        if (needsFix) {
+        if (localBad || linkBad) {
             await limit(async () => {
-                console.log(`[Buscando] ${char.name} (${char.source})...`);
-                const urls = await fetchGoogleImages(char.name, char.source || "");
+                console.log(`[AUDITORÍA] ${char.name} necesita reparación...`);
+                const urls = await fetchNewPhotos(char.name, char.source);
                 const newPhotos = [];
-                
+
                 for (let i = 0; i < urls.length; i++) {
-                    const res = await downloadImage(urls[i], char.name, i);
+                    const res = await downloadPhoto(urls[i], char.name, i);
                     if (res) newPhotos.push(res);
                 }
 
                 if (newPhotos.length > 0) {
                     char.img = newPhotos;
-                    count++;
+                    changes++;
+                    console.log(`[CORREGIDO] ${char.name} con nuevas imágenes.`);
+                } else {
+                    console.log(`[AVISO] No se pudo rescatar a ${char.name}.`);
                 }
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 1200));
             });
         }
     }
 
-    fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
-    console.log(`--- SE REPARARON ${count} PERSONAJES CON ARCHIVOS MALOS ---`);
-
-    try {
-        console.log("--- SUBIENDO LIMPIEZA A GITHUB ---");
-        execSync('git add .');
-        execSync('git commit -m "Cleanup: Removed corrupted code files and replaced with real images"');
-        execSync('git push origin main');
-    } catch (e) { console.error("Nada nuevo que subir."); }
+    if (changes > 0) {
+        fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
+        try {
+            console.log("--- SUBIENDO REPARACIONES A GITHUB ---");
+            execSync('git add . && git commit -m "Fix: Auditoría completa de imágenes (remoción de código y links muertos)" && git push origin main');
+        } catch { console.log("Error al sincronizar."); }
+    } else {
+        console.log("--- TODO PERFECTO: No se detectaron archivos corruptos ---");
+    }
 }
 
 run();

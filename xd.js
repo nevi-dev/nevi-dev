@@ -15,111 +15,140 @@ const SCRAPER_HEADERS = {
     'accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
-// --- FUNCIÓN PARA VALIDAR SI UN ARCHIVO ES REALMENTE UNA IMAGEN ---
-function isLocalFileBad(charName) {
-    const charFolderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-    const folderPath = path.join(FOTOS_DIR, charFolderName);
-    
-    if (!fs.existsSync(folderPath)) return true;
-    const files = fs.readdirSync(folderPath);
-    if (files.length === 0) return true;
+// --- TUS LISTAS DE PERSONAJES ---
+const FRUITS_BASKET = [
+    { name: "Tohru Honda", gender: "Mujer" }, { name: "Kyo Sohma", gender: "Hombre" },
+    { name: "Yuki Sohma", gender: "Hombre" }, { name: "Shigure Sohma", gender: "Hombre" },
+    { name: "Ayame Sohma", gender: "Hombre" }, { name: "Akito Sohma", gender: "Mujer" },
+    { name: "Momiji Sohma", gender: "Hombre" }, { name: "Hatsuharu Sohma", gender: "Hombre" },
+    { name: "Hiro Sohma", gender: "Hombre" }, { name: "Kagura Sohma", gender: "Mujer" },
+    { name: "Kisa Sohma", gender: "Mujer" }, { name: "Rin Sohma", gender: "Mujer" },
+    { name: "Hatori Sohma", gender: "Hombre" }, { name: "Kureno Sohma", gender: "Hombre" },
+    { name: "Ritsu Sohma", gender: "Hombre" }, { name: "Arisa Uotani", gender: "Mujer" },
+    { name: "Saki Hanajima", gender: "Mujer" }, { name: "Machi Kuragi", gender: "Mujer" },
+    { name: "Kakeru Manabe", gender: "Hombre" }, { name: "Kyoko Honda", gender: "Mujer" }
+].map(c => ({ ...c, source: "Fruits Basket" }));
 
-    for (const file of files) {
-        const fullPath = path.join(folderPath, file);
-        const buffer = fs.readFileSync(fullPath);
-        const header = buffer.toString('utf8', 0, 100).toLowerCase();
-        
-        // Si el archivo empieza con etiquetas HTML o mensajes de error
-        if (header.includes('<html') || header.includes('<!doc') || header.includes('forbidden') || header.includes('error')) {
-            console.log(`[BASURA DETECTADA] Borrando archivo corrupto en: ${charName}`);
-            fs.unlinkSync(fullPath);
-            return true;
-        }
-    }
-    return false;
+const AZUR_LANE = [
+    "Enterprise", "Belfast", "Atago", "Takao", "Akagi", "Kaga", "Amagi", "Laffey", "Javelin", "Ayanami", "Z23", 
+    "Prinz Eugen", "Taihou", "Formidable", "Sirius", "Bremerton", "Shinano", "New Jersey", "Illustrious", 
+    "Unicorn", "Noshiro", "Baltimore", "Bismarck", "Tirpitz", "Graf Zeppelin", "Roon", "Friedrich der Grosse", 
+    "San Diego", "Helena", "Warspite", "Queen Elizabeth", "Hood", "Zuikaku", "Shoukaku", "Nagato", "Yukikaze"
+].map(n => ({ name: n, source: "Azur Lane", gender: "Mujer" }));
+
+const PROJECT_QT = [
+    "Shizuka", "Kanna", "Haruka", "Sona", "Emilia", "Ariel", "Discordia", "Freya", "Gigi", "Kelly", "Celine", 
+    "Luna", "Mia", "Nia", "Tina", "Geneva", "Clara", "Ellen", "Elva", "Erica", "Hazel", "Iris", "Pamela", 
+    "Rachel", "Rayna", "Scarlett", "Una", "Venus", "Winni", "Abby", "Alberta", "Alice", "Alina", "Alizee"
+].map(n => ({ name: n, source: "Project QT", gender: "Mujer" }));
+
+const AEONS_ECHO = [
+    "Aria", "Linn", "Freyja", "Elara", "Seraphina", "Kaelia", "Thalassa", "Nyx", "Aura", "Lyra", "Vex", 
+    "Nova", "Stella", "Rin", "Kelis", "Ruka", "Janna", "Mamsa", "Hestia", "Biscuit", "Demeter", "Areka", 
+    "Moana", "Apollo", "Heracles", "Prometheus", "Tammy", "Cyrene", "Athena", "Aphrodite", "Hera", "Artemis"
+].map(n => ({ name: n, source: "Aeons Echo", gender: "Mujer" }));
+
+const NEW_CHARACTERS = [...FRUITS_BASKET, ...AZUR_LANE, ...PROJECT_QT, ...AEONS_ECHO];
+
+// --- FUNCIONES DE APOYO ---
+
+const generatePrice = () => Math.floor(Math.random() * (1900 - 900 + 1) + 900).toString();
+
+async function fetchPokeApi(name) {
+    try {
+        const cleanName = name.toLowerCase().replace(/\s+/g, '-');
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${cleanName}`);
+        const d = res.data.sprites;
+        const urls = [
+            d.other['official-artwork']?.front_default,
+            d.other['official-artwork']?.front_shiny,
+            d.other['home']?.front_default,
+            d.front_default
+        ].filter(Boolean);
+        return urls.length >= 1 ? urls : null;
+    } catch { return null; }
 }
 
-// --- FUNCIÓN PARA VERIFICAR SI EL LINK EN EL JSON FUNCIONA ---
-async function isUrlDead(url) {
-    if (!url || !url.startsWith('http')) return true;
+async function fetchWebPhotos(charName, source) {
+    let urls = [];
+    const query = encodeURIComponent(`${charName} character from ${source} game anime official art`);
     try {
-        const res = await axios.get(url, { timeout: 6000, headers: SCRAPER_HEADERS, responseType: 'arraybuffer' });
-        const start = res.data.toString('utf8', 0, 50).toLowerCase();
-        return start.includes('<html') || start.includes('<!doc');
-    } catch {
-        return true; 
-    }
-}
-
-async function fetchNewPhotos(charName, source) {
-    // Intento 1: Google
-    try {
-        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(charName + ' ' + (source || ''))}&udm=2`;
-        const response = await fetch(searchUrl, { headers: SCRAPER_HEADERS });
+        const response = await fetch(`https://www.google.com/search?q=${query}&udm=2`, { headers: SCRAPER_HEADERS });
         const html = await response.text();
         const pattern = /\[1,\[0,"(?<id>[\d\w\-_]+)",\["https?:\/\/(?:[^"]+)",\d+,\d+\]\s?,\["(?<url>https?:\/\/(?:[^"]+))",\d+,\d+\]/gm;
-        const matches = [...html.matchAll(pattern)];
-        let urls = matches.map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
-                   .filter(v => v && !v.includes('gstatic.com')).slice(0, 3);
-        if (urls.length > 0) return urls;
+        urls = [...html.matchAll(pattern)].map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
+               .filter(v => v && !v.includes('gstatic.com')).slice(0, 5);
     } catch {}
 
-    // Intento 2: Pinterest API
-    try {
-        const res = await fetch(`https://rest.apicausas.xyz/api/v1/buscadores/pinterest?q=${encodeURIComponent(charName + ' anime')}&apikey=${API_KEY}`);
-        const json = await res.json();
-        return json.status ? json.data.map(item => item.image).slice(0, 3) : [];
-    } catch { return []; }
+    if (urls.length < 2) {
+        try {
+            const res = await fetch(`https://rest.apicausas.xyz/api/v1/buscadores/pinterest?q=${query}&apikey=${API_KEY}`);
+            const json = await res.json();
+            if (json.status) urls = [...urls, ...json.data.map(item => item.image)].slice(0, 6);
+        } catch {}
+    }
+    return urls;
 }
 
-async function downloadPhoto(url, charName, index) {
+async function download(url, charName, index) {
     try {
-        const charFolderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        const folder = path.join(FOTOS_DIR, charFolderName);
+        const folderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const folder = path.join(FOTOS_DIR, folderName);
         if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
-
         const fileName = `img_${index}.jpg`;
         const finalPath = path.join(folder, fileName);
 
-        const response = await axios({ url, method: 'GET', responseType: 'arraybuffer', timeout: 10000, headers: SCRAPER_HEADERS });
-        const start = response.data.toString('utf8', 0, 50).toLowerCase();
-        if (start.includes('<html') || start.includes('<!doc')) return null;
-
-        fs.writeFileSync(finalPath, response.data);
-        return `https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${charFolderName}/${fileName}`;
+        const res = await axios({ url, method: 'GET', responseType: 'arraybuffer', timeout: 8000, headers: SCRAPER_HEADERS });
+        if (res.data.toString('utf8', 0, 50).includes('<html')) return null;
+        fs.writeFileSync(finalPath, res.data);
+        return `https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${folderName}/${fileName}`;
     } catch { return null; }
 }
+
+// --- PROCESO ---
 
 async function run() {
     let db = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
     let changes = 0;
 
-    console.log(`--- INICIANDO AUDITORÍA DE ${db.length} PERSONAJES ---`);
+    // 1. Inyectar Personajes de las listas
+    for (const char of NEW_CHARACTERS) {
+        if (!db.some(c => c.name.toLowerCase() === char.name.toLowerCase())) {
+            const nextId = (Math.max(...db.map(c => parseInt(c.id))) + 1).toString();
+            db.push({ ...char, id: nextId, value: generatePrice(), img: [], vid: [], user: null, status: "Libre", votes: 0 });
+            changes++;
+        }
+    }
 
+    // 2. Auditoría: Pokémon (PokeAPI) y Nuevos (Web)
     for (let char of db) {
-        // ¿El archivo local está mal o el link del JSON está muerto?
-        const localBad = isLocalFileBad(char.name);
-        const linkBad = char.img.length === 0 || await isUrlDead(char.img[0]);
+        const isPokemon = char.source?.toLowerCase().includes('pokemon');
+        const isNewWithoutImages = char.img.length === 0;
 
-        if (localBad || linkBad) {
+        if (isPokemon || isNewWithoutImages) {
             await limit(async () => {
-                console.log(`[AUDITORÍA] ${char.name} necesita reparación...`);
-                const urls = await fetchNewPhotos(char.name, char.source);
-                const newPhotos = [];
+                console.log(`[PROCESANDO] ${char.name} | Origen: ${char.source}`);
+                let urls = [];
 
-                for (let i = 0; i < urls.length; i++) {
-                    const res = await downloadPhoto(urls[i], char.name, i);
-                    if (res) newPhotos.push(res);
-                }
-
-                if (newPhotos.length > 0) {
-                    char.img = newPhotos;
-                    changes++;
-                    console.log(`[CORREGIDO] ${char.name} con nuevas imágenes.`);
+                if (isPokemon) {
+                    urls = await fetchPokeApi(char.name);
                 } else {
-                    console.log(`[AVISO] No se pudo rescatar a ${char.name}.`);
+                    urls = await fetchWebPhotos(char.name, char.source);
                 }
-                await new Promise(r => setTimeout(r, 1200));
+
+                if (urls && urls.length > 0) {
+                    const saved = [];
+                    for (let i = 0; i < urls.length; i++) {
+                        const link = await download(urls[i], char.name, i);
+                        if (link) saved.push(link);
+                    }
+                    if (saved.length > 0) {
+                        char.img = saved;
+                        changes++;
+                        console.log(`[EXITO] ${saved.length} fotos guardadas.`);
+                    }
+                }
+                await new Promise(r => setTimeout(r, 1100));
             });
         }
     }
@@ -127,11 +156,11 @@ async function run() {
     if (changes > 0) {
         fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
         try {
-            console.log("--- SUBIENDO REPARACIONES A GITHUB ---");
-            execSync('git add . && git commit -m "Fix: Auditoría completa de imágenes (remoción de código y links muertos)" && git push origin main');
-        } catch { console.log("Error al sincronizar."); }
+            execSync('git add . && git commit -m "Auto: Update cast y fotos especificas" && git push origin main');
+            console.log("--- GITHUB ACTUALIZADO ---");
+        } catch { console.log("Error al subir."); }
     } else {
-        console.log("--- TODO PERFECTO: No se detectaron archivos corruptos ---");
+        console.log("--- TODO AL DÍA ---");
     }
 }
 

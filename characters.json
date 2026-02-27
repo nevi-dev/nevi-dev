@@ -14315,5 +14315,430 @@
         "user": null,
         "status": "Libre",
         "votes": 0
+    },
+    {
+        "name": "Katsuki Bakugo",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "820",
+        "value": "2221",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/katsuki_bakugo/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/katsuki_bakugo/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/katsuki_bakugo/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/katsuki_bakugo/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Ochaco Uraraka",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "821",
+        "value": "1504",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/ochaco_uraraka/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/ochaco_uraraka/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/ochaco_uraraka/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/ochaco_uraraka/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/ochaco_uraraka/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Tenya Iida",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "822",
+        "value": "2573",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tenya_iida/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tenya_iida/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tenya_iida/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tenya_iida/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tenya_iida/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Tsuyu Asui",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "823",
+        "value": "2599",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tsuyu_asui/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tsuyu_asui/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tsuyu_asui/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tsuyu_asui/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tsuyu_asui/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Eijiro Kirishima",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "824",
+        "value": "1657",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eijiro_kirishima/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eijiro_kirishima/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eijiro_kirishima/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eijiro_kirishima/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eijiro_kirishima/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Kyoka Jiro",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "825",
+        "value": "2874",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/kyoka_jiro/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/kyoka_jiro/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/kyoka_jiro/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/kyoka_jiro/img_3.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Mina Ashido",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "826",
+        "value": "1278",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mina_ashido/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mina_ashido/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mina_ashido/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mina_ashido/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mina_ashido/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Fumikage Tokoyami",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "827",
+        "value": "2152",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/fumikage_tokoyami/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/fumikage_tokoyami/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/fumikage_tokoyami/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/fumikage_tokoyami/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/fumikage_tokoyami/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Shota Aizawa",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "828",
+        "value": "1813",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/shota_aizawa/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/shota_aizawa/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/shota_aizawa/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/shota_aizawa/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/shota_aizawa/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "All Might",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "829",
+        "value": "2675",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/all_might/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/all_might/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/all_might/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/all_might/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/all_might/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Endeavor",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "830",
+        "value": "1814",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/endeavor/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/endeavor/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/endeavor/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/endeavor/img_3.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Hawks",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "831",
+        "value": "1658",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/hawks/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/hawks/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/hawks/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/hawks/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/hawks/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Tomura Shigaraki",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "832",
+        "value": "2341",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tomura_shigaraki/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tomura_shigaraki/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tomura_shigaraki/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tomura_shigaraki/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tomura_shigaraki/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Twice",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "833",
+        "value": "2255",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/twice/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/twice/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/twice/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/twice/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/twice/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Overhaul",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "834",
+        "value": "2768",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/overhaul/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/overhaul/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/overhaul/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/overhaul/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/overhaul/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Eri",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "835",
+        "value": "2864",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eri/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eri/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eri/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eri/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/eri/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Mirio Togata",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "836",
+        "value": "1454",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirio_togata/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirio_togata/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirio_togata/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirio_togata/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Tamaki Amajiki",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "837",
+        "value": "1751",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tamaki_amajiki/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tamaki_amajiki/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tamaki_amajiki/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tamaki_amajiki/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/tamaki_amajiki/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Nejire Hado",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "838",
+        "value": "1861",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/nejire_hado/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/nejire_hado/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/nejire_hado/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/nejire_hado/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/nejire_hado/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Mount Lady",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "839",
+        "value": "1526",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mount_lady/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mount_lady/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mount_lady/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mount_lady/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Midnight",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "840",
+        "value": "2134",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/midnight/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/midnight/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/midnight/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/midnight/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/midnight/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Mirko",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "841",
+        "value": "2839",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirko/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirko/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/mirko/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Stain",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "842",
+        "value": "1510",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/stain/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/stain/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/stain/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/stain/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/stain/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "Melissa Shield",
+        "source": "My Hero Academia",
+        "gender": "Varios",
+        "id": "843",
+        "value": "1805",
+        "img": [
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_0.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_1.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_2.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_3.jpg",
+            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_4.jpg"
+        ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
     }
 ]

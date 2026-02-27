@@ -15,62 +15,18 @@ const SCRAPER_HEADERS = {
     'accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
-// --- MEGA LISTAS ACTUALIZADAS ---
+// --- LISTA DE LAST ORIGIN (Daphne incluida) ---
+const LAST_ORIGIN = [
+    "Daphne", "Constantine S2", "LRL", "Marie", "B-11 Night Angel", "P-24 Pin-up", 
+    "Cerberus", "Azazel", "Alice", "Charlotte", "Fenrir", "P-18 Silvia", "T-14 Miho", 
+    "A-1 Bomber Inherent", "CS Perrault", "Soverign", "Leona", "Valery", "Eternity",
+    "May", "Baek-to", "Nimue", "Siren", "Tiamat", "Cyclops Princess",
+    "Habetrot", "Gargoyle", "Mighty R", "Brownie", "Leprechaun", "Sowan"
+].map(n => ({ name: n, source: "Last Origin", gender: "Mujer" }));
 
-const LUCKY_STAR = [
-    "Konata Izumi", "Kagami Hiiragi", "Tsukasa Hiiragi", "Miyuki Takara", "Yutaka Kobayakawa", 
-    "Minami Iwasaki", "Hiyori Tamura", "Patricia Martin", "Misao Kusakabe", "Ayano Minegishi", 
-    "Nanako Kuroi", "Yui Narumi", "Sohjiroh Izumi"
-].map(n => ({ name: n, source: "Lucky Star", gender: "Mujer" }));
+const NEW_CHARACTERS = [...LAST_ORIGIN];
 
-const NIKKE = [
-    "Rapi", "Anis", "Neon", "Marian", "Modernia", "Alice", "Snow White", "Scarlet", "Dorothy", 
-    "Privaty", "Diesel", "Rupee", "Volume", "Emma", "Viper", "Blanc", "Noir", "Maxwell", "Drake", 
-    "Helm", "Sugar", "Exia", "Novel", "Guillotine", "Maiden", "Brid", "Poli", "Miranda"
-].map(n => ({ name: n, source: "Goddess of Victory: Nikke", gender: "Mujer" }));
-
-const RE_ZERO = [
-    "Subaru Natsuki", "Emilia", "Rem", "Ram", "Beatrice", "Roswaal L. Mathers", "Echidna", 
-    "Satella", "Garfiel Tinsel", "Otto Suwen", "Crusch Karsten", "Felix Argyle", "Reinhard van Astrea", 
-    "Julius Juukulius", "Wilhelm van Astrea", "Felt", "Priscilla Barielle", "Anastasia Hoshin", 
-    "Frederica Baumann", "Petra Leyte", "Meili Portroute", "Elsa Granhiert", "Petelgeuse Romanee-Conti"
-].map(n => ({ name: n, source: "Re:ZERO -Starting Life in Another World-", gender: "Varios" }));
-
-const CHAINSAW_MAN = [
-    "Denji", "Power", "Makima", "Aki Hayakawa", "Pochita", "Kobeni Higashiyama", "Reze", "Himeno", 
-    "Kishibe", "Quanxi", "Angel Devil", "Beam", "Galgali", "Princesa", "Katana Man", "Nayuta", "Asa Mitaka"
-].map(n => ({ name: n, source: "Chainsaw Man", gender: "Varios" }));
-
-const THE_LAST_OF_US = [
-    "Joel Miller", "Ellie", "Tommy Miller", "Tess", "Bill", "Abby Anderson", "Dina", "Jesse", 
-    "Lev", "Yara", "Marlene", "David", "Riley Abel", "Owen Moore", "Mel"
-].map(n => ({ name: n, source: "The Last of Us", gender: "Varios" }));
-
-const LUPIN = [
-    "Arsene Lupin III", "Daisuke Jigen", "Goemon Ishikawa XIII", "Fujiko Mine", "Inspector Koichi Zenigata"
-].map(n => ({ name: n, source: "Lupin III", gender: "Varios" }));
-
-const FNAF = [
-    "Springtrap", "Mangle", "The Puppet", "Balloon Boy", "Circus Baby", "Ballora", "Ennard", 
-    "Funtime Freddy", "Funtime Foxy", "Lefty", "Helpy", "Roxanne Wolf", "Glamrock Chica", 
-    "Montgomery Gator", "Vanny", "Golden Freddy", "Nightmare", "Plushtrap", "Glitchtrap"
-].map(n => ({ name: n, source: "Five Nights at Freddy's", gender: "Animatrónico" }));
-
-const FNIA = [
-    "Fredina", "Bonnie (FNIA)", "Chicky", "Foxy (FNIA)", "Mangle (FNIA)", "Puppet (FNIA)", 
-    "Springtrap (FNIA)", "Golden Fredina"
-].map(n => ({ name: n, source: "Five Nights in Anime", gender: "Mujer" }));
-
-const CLASH_ROYALE = [
-    { name: "Bruja Madre (Mother Witch)", source: "Clash Royale", gender: "Mujer" }
-];
-
-const NEW_CHARACTERS = [
-    ...LUCKY_STAR, ...NIKKE, ...RE_ZERO, ...CHAINSAW_MAN, 
-    ...THE_LAST_OF_US, ...LUPIN, ...FNAF, ...FNIA, ...CLASH_ROYALE
-];
-
-// --- LÓGICA DE APOYO ---
+// --- FUNCIONES DE APOYO ---
 
 const generatePrice = () => Math.floor(Math.random() * (2900 - 1200 + 1) + 1200).toString();
 
@@ -78,16 +34,17 @@ async function fetchWebPhotos(charName, source) {
     let urls = [];
     const query = encodeURIComponent(`${charName} ${source} official art`);
     
-    // Intento 1: Google
     try {
         const response = await fetch(`https://www.google.com/search?q=${query}&udm=2`, { headers: SCRAPER_HEADERS });
         const html = await response.text();
         const pattern = /\[1,\[0,"(?<id>[\d\w\-_]+)",\["https?:\/\/(?:[^"]+)",\d+,\d+\]\s?,\["(?<url>https?:\/\/(?:[^"]+))",\d+,\d+\]/gm;
         urls = [...html.matchAll(pattern)].map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
                .filter(v => v && !v.includes('gstatic.com')).slice(0, 5);
-    } catch {}
+    } catch {
+        console.log(`Error en Google para ${charName}`);
+    }
 
-    // Intento 2: Pinterest API (Tu fallback específico)
+    // Fallback a Pinterest usando tu endpoint
     if (urls.length < 2) {
         try {
             const res = await fetch(`https://rest.apicausas.xyz/api/v1/buscadores/pinterest?q=${query}&apikey=${API_KEY}`);
@@ -95,7 +52,9 @@ async function fetchWebPhotos(charName, source) {
             if (json.status && json.data) {
                 urls = [...urls, ...json.data.map(item => item.image)].slice(0, 6);
             }
-        } catch {}
+        } catch {
+            console.log(`Error en Pinterest para ${charName}`);
+        }
     }
     return urls;
 }
@@ -124,7 +83,7 @@ async function run() {
     let db = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
     let changes = 0;
 
-    // Agregar nuevos
+    // Inyectar solo los nuevos
     for (const char of NEW_CHARACTERS) {
         if (!db.some(c => c.name.toLowerCase() === char.name.toLowerCase())) {
             const ids = db.map(c => parseInt(c.id)).filter(n => !isNaN(n));
@@ -134,11 +93,11 @@ async function run() {
         }
     }
 
-    // Auditoría de imágenes
+    // Auditoría de fotos
     for (let char of db) {
         if (char.img.length === 0) {
             await limit(async () => {
-                console.log(`🔎 Buscando: ${char.name} de ${char.source}`);
+                console.log(`📸 Descargando a: ${char.name} (${char.source})`);
                 const urls = await fetchWebPhotos(char.name, char.source);
                 
                 if (urls.length > 0) {
@@ -150,10 +109,9 @@ async function run() {
                     if (saved.length > 0) {
                         char.img = saved;
                         changes++;
-                        console.log(`✅ ${char.name}: ${saved.length} fotos.`);
                     }
                 }
-                await new Promise(r => setTimeout(r, 1200));
+                await new Promise(r => setTimeout(r, 1500)); 
             });
         }
     }
@@ -161,11 +119,11 @@ async function run() {
     if (changes > 0) {
         fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
         try {
-            execSync('git add . && git commit -m "Auto: Update full cast y fotos" && git push origin main');
-            console.log("🚀 Repositorio actualizado.");
-        } catch { console.log("⚠️ Error al subir a Git."); }
+            execSync('git add . && git commit -m "Auto: Update Last Origin (Daphne y otros)" && git push origin main');
+            console.log("✅ GitHub actualizado con Daphne y compañía.");
+        } catch { console.log("❌ Error al subir cambios."); }
     } else {
-        console.log("✨ Todo actualizado.");
+        console.log("✨ Todo está al día.");
     }
 }
 

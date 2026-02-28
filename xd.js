@@ -15,10 +15,29 @@ const SCRAPER_HEADERS = {
     'accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
 };
 
-// --- LISTA DE MY HERO ACADEMIA ---
-const MHA_LIST = [
-    "elliot fem" 
-].map(n => ({ name: n, source: "forsaken", gender: "mujel" }));
+// --- LISTA DE PERSONAJES A AGREGAR ---
+const NEW_CHARACTERS = [
+    // Oshi no Ko
+    { name: "Miyako Saitō", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Mem-cho", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Frill Shiranui", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Minami Kotobuki", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Yuki Sumi", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Abiko Samejima", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Yoriko Kichijōji", source: "Oshi no Ko", gender: "Mujer" },
+    { name: "Melt Narushima", source: "Oshi no Ko", gender: "Hombre" },
+    { name: "Aqua Hoshino", source: "Oshi no Ko", gender: "Hombre" },
+    // Murder Drones
+    { name: "Uzi Doorman", source: "Murder Drones", gender: "Mujer" },
+    { name: "Serial Designation N", source: "Murder Drones", gender: "Hombre" },
+    { name: "Serial Designation V", source: "Murder Drones", gender: "Mujer" },
+    { name: "Serial Designation J", source: "Murder Drones", gender: "Mujer" },
+    { name: "Cyn", source: "Murder Drones", gender: "Mujer" },
+    { name: "Tessa Elliott", source: "Murder Drones", gender: "Mujer" },
+    { name: "Thad", source: "Murder Drones", gender: "Hombre" },
+    { name: "Lizzy", source: "Murder Drones", gender: "Mujer" },
+    { name: "Doll", source: "Murder Drones", gender: "Mujer" }
+];
 
 // --- FUNCIONES DE APOYO ---
 
@@ -26,7 +45,8 @@ const generatePrice = () => Math.floor(Math.random() * (2900 - 1200 + 1) + 1200)
 
 async function fetchWebPhotos(charName, source) {
     let urls = [];
-    const query = encodeURIComponent(`${charName} ${source} official art hero costume`);
+    // Query optimizada para mejores resultados artísticos
+    const query = encodeURIComponent(`${charName} ${source} official art render`);
     
     try {
         const response = await fetch(`https://www.google.com/search?q=${query}&udm=2`, { headers: SCRAPER_HEADERS });
@@ -34,7 +54,7 @@ async function fetchWebPhotos(charName, source) {
         const pattern = /\[1,\[0,"(?<id>[\d\w\-_]+)",\["https?:\/\/(?:[^"]+)",\d+,\d+\]\s?,\["(?<url>https?:\/\/(?:[^"]+))",\d+,\d+\]/gm;
         urls = [...html.matchAll(pattern)].map(m => m.groups?.url?.replace(/\\u003d/g, '=').replace(/\\u0026/g, '&'))
                .filter(v => v && !v.includes('gstatic.com')).slice(0, 5);
-    } catch {}
+    } catch (e) { console.error(`Error en Google para ${charName}`); }
 
     if (urls.length < 2) {
         try {
@@ -43,7 +63,7 @@ async function fetchWebPhotos(charName, source) {
             if (json.status && json.data) {
                 urls = [...urls, ...json.data.map(item => item.image)].slice(0, 6);
             }
-        } catch {}
+        } catch (e) { console.error(`Error en Pinterest para ${charName}`); }
     }
     return urls;
 }
@@ -53,47 +73,63 @@ async function download(url, charName, index) {
         const folderName = charName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
         const folder = path.join(FOTOS_DIR, folderName);
         if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
+        
         const fileName = `img_${index}.jpg`;
         const finalPath = path.join(folder, fileName);
+        
         const res = await axios({ url, method: 'GET', responseType: 'arraybuffer', timeout: 10000, headers: SCRAPER_HEADERS });
+        
         if (res.data.toString('utf8', 0, 50).includes('<html')) return null;
+        
         fs.writeFileSync(finalPath, res.data);
+        // Ajusta esta URL segun tu repo de GitHub
         return `https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/${folderName}/${fileName}`;
     } catch { return null; }
 }
 
-// --- PROCESO ---
+// --- PROCESO PRINCIPAL ---
 
 async function run() {
     if (!fs.existsSync(FILE_PATH)) fs.writeFileSync(FILE_PATH, '[]');
     let db = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
     let changes = 0;
 
-    console.log("--- 🛡️ INICIANDO AUDITORÍA DE MY HERO ACADEMIA ---");
+    console.log("--- 🛡️ INICIANDO AUDITORÍA DE PERSONAJES ---");
 
-    for (const char of MHA_LIST) {
+    // 1. Agregar nuevos si no existen
+    for (const char of NEW_CHARACTERS) {
         const exists = db.some(c => c.name.toLowerCase() === char.name.toLowerCase());
 
         if (exists) {
-            // AQUÍ ESTÁ EL LOG QUE PEDISTE: Avisa que ya está y lo ignora
-            console.log(`⚠️  IGNORANDO: [${char.name}] ya se encuentra en la base de datos.`);
+            console.log(`⚠️  IGNORANDO: [${char.name}] ya está en la base de datos.`);
         } else {
-            // SI NO ESTÁ, LO AGREGA
-            console.log(`✅ AGREGANDO: [${char.name}] es nuevo. Generando ID y precio...`);
+            console.log(`✅ AGREGANDO: [${char.name}] es nuevo.`);
             const ids = db.map(c => parseInt(c.id)).filter(n => !isNaN(n));
             const nextId = ids.length > 0 ? (Math.max(...ids) + 1).toString() : "1";
             
-            db.push({ ...char, id: nextId, value: generatePrice(), img: [], vid: [], user: null, status: "Libre", votes: 0 });
+            db.push({ 
+                ...char, 
+                id: nextId, 
+                value: generatePrice(), 
+                img: [], 
+                vid: [], 
+                user: null, 
+                status: "Libre", 
+                votes: 0 
+            });
             changes++;
         }
     }
 
-    // Buscar fotos para los que no tengan
+    // 2. Buscar fotos para los que no tengan (Oshi no Ko, Murder Drones, etc)
+    const validSources = ["Oshi no Ko", "Murder Drones", "My Hero Academia", "forsaken"];
+
     for (let char of db) {
-        if (char.source === "My Hero Academia" && char.img.length === 0) {
+        if (validSources.includes(char.source) && char.img.length === 0) {
             await limit(async () => {
-                console.log(`📸 Buscando imágenes oficiales para: ${char.name}`);
+                console.log(`📸 Buscando imágenes para: ${char.name} (${char.source})`);
                 const urls = await fetchWebPhotos(char.name, char.source);
+                
                 if (urls.length > 0) {
                     const saved = [];
                     for (let i = 0; i < urls.length; i++) {
@@ -106,19 +142,24 @@ async function run() {
                         console.log(`✨ Guardadas ${saved.length} fotos para ${char.name}.`);
                     }
                 }
-                await new Promise(r => setTimeout(r, 1300));
+                // Delay para no ser bloqueado por Google
+                await new Promise(r => setTimeout(r, 2000));
             });
         }
     }
 
+    // 3. Guardar y subir cambios
     if (changes > 0) {
         fs.writeFileSync(FILE_PATH, JSON.stringify(db, null, 4));
         try {
-            execSync('git add . && git commit -m "Auto: Update MHA cast (Skiped duplicates)" && git push origin main');
-            console.log("🚀 GitHub actualizado.");
-        } catch { console.log("❌ Error al subir a Git."); }
+            console.log("📤 Subiendo cambios a GitHub...");
+            execSync('git add . && git commit -m "Auto: Update characters and photos" && git push origin main');
+            console.log("🚀 Proceso completado exitosamente.");
+        } catch (e) { 
+            console.log("❌ Error al subir a Git. Verifica tus permisos o conexión."); 
+        }
     } else {
-        console.log("💎 No hay personajes nuevos que añadir. Todo está limpio.");
+        console.log("💎 No hubo cambios. La base de datos está al día.");
     }
 }
 

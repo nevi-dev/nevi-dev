@@ -1,6 +1,6 @@
 [
     {
-        "id": "0",
+        "id": "56",
         "name": "sophie rain",
         "gender": "Mujer",
         "value": "2200",
@@ -1026,26 +1026,6 @@
         "vid": [
             "https://files.catbox.moe/12kmnd.gif",
             "https://files.catbox.moe/yv4aoe.gif"
-        ],
-        "user": null,
-        "status": "Libre",
-        "votes": 0
-    },
-    {
-        "id": "56",
-        "name": "Bakugou Katsuki",
-        "gender": "Hombre",
-        "value": "1780",
-        "source": "Boku no hero",
-        "img": [
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/bakugou_katsuki/img_0.png",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/bakugou_katsuki/img_1.png",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/bakugou_katsuki/img_2.png",
-            "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/bakugou_katsuki/img_3.jpg"
-        ],
-        "vid": [
-            "https://files.catbox.moe/71zp61.webp",
-            "https://files.catbox.moe/lv7dzr.webp"
         ],
         "user": null,
         "status": "Libre",
@@ -12378,7 +12358,7 @@
     {
         "name": "Subaru Natsuki",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "709",
         "value": "1651",
         "img": [
@@ -12395,7 +12375,7 @@
     {
         "name": "Rem",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "710",
         "value": "2641",
         "img": [
@@ -12413,7 +12393,7 @@
     {
         "name": "Ram",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "711",
         "value": "2276",
         "img": [
@@ -12431,7 +12411,7 @@
     {
         "name": "Beatrice",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "712",
         "value": "2558",
         "img": [
@@ -12449,7 +12429,7 @@
     {
         "name": "Roswaal L. Mathers",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "713",
         "value": "2429",
         "img": [
@@ -12467,7 +12447,7 @@
     {
         "name": "Echidna",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "714",
         "value": "1904",
         "img": [
@@ -12484,7 +12464,7 @@
     {
         "name": "Satella",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "715",
         "value": "2014",
         "img": [
@@ -12502,7 +12482,7 @@
     {
         "name": "Garfiel Tinsel",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "716",
         "value": "2079",
         "img": [
@@ -12519,7 +12499,7 @@
     {
         "name": "Otto Suwen",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "717",
         "value": "2699",
         "img": [
@@ -12537,7 +12517,7 @@
     {
         "name": "Crusch Karsten",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "718",
         "value": "2200",
         "img": [
@@ -12555,7 +12535,7 @@
     {
         "name": "Felix Argyle",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "719",
         "value": "1464",
         "img": [
@@ -12572,7 +12552,7 @@
     {
         "name": "Reinhard van Astrea",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "720",
         "value": "2560",
         "img": [
@@ -12589,7 +12569,7 @@
     {
         "name": "Julius Juukulius",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "721",
         "value": "2872",
         "img": [
@@ -12605,7 +12585,7 @@
     {
         "name": "Wilhelm van Astrea",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "722",
         "value": "2107",
         "img": [
@@ -12623,7 +12603,7 @@
     {
         "name": "Felt",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "723",
         "value": "2715",
         "img": [
@@ -12640,7 +12620,7 @@
     {
         "name": "Priscilla Barielle",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "724",
         "value": "2420",
         "img": [
@@ -12658,7 +12638,7 @@
     {
         "name": "Anastasia Hoshin",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "725",
         "value": "2330",
         "img": [
@@ -12675,7 +12655,7 @@
     {
         "name": "Frederica Baumann",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "726",
         "value": "1359",
         "img": [
@@ -12693,7 +12673,7 @@
     {
         "name": "Petra Leyte",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "727",
         "value": "1452",
         "img": [
@@ -12711,7 +12691,7 @@
     {
         "name": "Meili Portroute",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "728",
         "value": "2701",
         "img": [
@@ -12729,7 +12709,7 @@
     {
         "name": "Elsa Granhiert",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "729",
         "value": "1507",
         "img": [
@@ -12747,7 +12727,7 @@
     {
         "name": "Petelgeuse Romanee-Conti",
         "source": "Re:ZERO -Starting Life in Another World-",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "730",
         "value": "1664",
         "img": [
@@ -12765,7 +12745,7 @@
     {
         "name": "Denji",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "731",
         "value": "2549",
         "img": [
@@ -12783,7 +12763,7 @@
     {
         "name": "Aki Hayakawa",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "732",
         "value": "1973",
         "img": [
@@ -12801,7 +12781,7 @@
     {
         "name": "Pochita",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "733",
         "value": "2033",
         "img": [
@@ -12818,7 +12798,7 @@
     {
         "name": "Kobeni Higashiyama",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "734",
         "value": "1357",
         "img": [
@@ -12836,7 +12816,7 @@
     {
         "name": "Himeno",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "735",
         "value": "1223",
         "img": [
@@ -12854,7 +12834,7 @@
     {
         "name": "Kishibe",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "736",
         "value": "1526",
         "img": [
@@ -12871,7 +12851,7 @@
     {
         "name": "Quanxi",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "737",
         "value": "1234",
         "img": [
@@ -12889,7 +12869,7 @@
     {
         "name": "Beam",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "738",
         "value": "2545",
         "img": [
@@ -12906,7 +12886,7 @@
     {
         "name": "Galgali",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "739",
         "value": "1791",
         "img": [
@@ -12923,7 +12903,7 @@
     {
         "name": "Princesa",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "740",
         "value": "1651",
         "img": [
@@ -12937,7 +12917,7 @@
     {
         "name": "Katana Man",
         "source": "Chainsaw Man",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "741",
         "value": "2252",
         "img": [
@@ -12955,7 +12935,7 @@
     {
         "name": "Joel Miller",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "742",
         "value": "1764",
         "img": [
@@ -12971,7 +12951,7 @@
     {
         "name": "Ellie",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "743",
         "value": "2444",
         "img": [
@@ -12987,7 +12967,7 @@
     {
         "name": "Tommy Miller",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "744",
         "value": "2865",
         "img": [
@@ -13004,7 +12984,7 @@
     {
         "name": "Tess",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "745",
         "value": "2633",
         "img": [
@@ -13022,7 +13002,7 @@
     {
         "name": "Bill",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "746",
         "value": "2559",
         "img": [
@@ -13039,7 +13019,7 @@
     {
         "name": "Abby Anderson",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "747",
         "value": "1431",
         "img": [
@@ -13057,7 +13037,7 @@
     {
         "name": "Dina",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "748",
         "value": "2805",
         "img": [
@@ -13075,7 +13055,7 @@
     {
         "name": "Jesse",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "749",
         "value": "2821",
         "img": [
@@ -13091,7 +13071,7 @@
     {
         "name": "Lev",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "750",
         "value": "2892",
         "img": [
@@ -13108,7 +13088,7 @@
     {
         "name": "Yara",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "751",
         "value": "2405",
         "img": [
@@ -13124,7 +13104,7 @@
     {
         "name": "Marlene",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "752",
         "value": "1627",
         "img": [
@@ -13142,7 +13122,7 @@
     {
         "name": "David",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "753",
         "value": "2424",
         "img": [
@@ -13159,7 +13139,7 @@
     {
         "name": "Riley Abel",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "754",
         "value": "1684",
         "img": [
@@ -13174,7 +13154,7 @@
     {
         "name": "Owen Moore",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "755",
         "value": "2055",
         "img": [
@@ -13192,7 +13172,7 @@
     {
         "name": "Mel",
         "source": "The Last of Us",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "756",
         "value": "2579",
         "img": [
@@ -13209,7 +13189,7 @@
     {
         "name": "Arsene Lupin III",
         "source": "Lupin III",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "757",
         "value": "2406",
         "img": [
@@ -13227,7 +13207,7 @@
     {
         "name": "Daisuke Jigen",
         "source": "Lupin III",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "758",
         "value": "1771",
         "img": [
@@ -13245,7 +13225,7 @@
     {
         "name": "Goemon Ishikawa XIII",
         "source": "Lupin III",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "759",
         "value": "2002",
         "img": [
@@ -13263,7 +13243,7 @@
     {
         "name": "Fujiko Mine",
         "source": "Lupin III",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "760",
         "value": "1243",
         "img": [
@@ -13280,7 +13260,7 @@
     {
         "name": "Inspector Koichi Zenigata",
         "source": "Lupin III",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "761",
         "value": "1407",
         "img": [
@@ -13775,7 +13755,7 @@
         "votes": 0
     },
     {
-        "name": "Bruja Madre (Mother Witch)",
+        "name": "Bruja Madre",
         "source": "Clash Royale",
         "gender": "Mujer",
         "id": "789",
@@ -14319,7 +14299,7 @@
     {
         "name": "Katsuki Bakugo",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "820",
         "value": "2221",
         "img": [
@@ -14336,7 +14316,7 @@
     {
         "name": "Ochaco Uraraka",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "821",
         "value": "1504",
         "img": [
@@ -14354,7 +14334,7 @@
     {
         "name": "Tenya Iida",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "822",
         "value": "2573",
         "img": [
@@ -14372,7 +14352,7 @@
     {
         "name": "Tsuyu Asui",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "823",
         "value": "2599",
         "img": [
@@ -14390,7 +14370,7 @@
     {
         "name": "Eijiro Kirishima",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "824",
         "value": "1657",
         "img": [
@@ -14408,7 +14388,7 @@
     {
         "name": "Kyoka Jiro",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "825",
         "value": "2874",
         "img": [
@@ -14425,7 +14405,7 @@
     {
         "name": "Mina Ashido",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "826",
         "value": "1278",
         "img": [
@@ -14443,7 +14423,7 @@
     {
         "name": "Fumikage Tokoyami",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "827",
         "value": "2152",
         "img": [
@@ -14461,7 +14441,7 @@
     {
         "name": "Shota Aizawa",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "828",
         "value": "1813",
         "img": [
@@ -14479,7 +14459,7 @@
     {
         "name": "All Might",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "829",
         "value": "2675",
         "img": [
@@ -14497,7 +14477,7 @@
     {
         "name": "Endeavor",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "830",
         "value": "1814",
         "img": [
@@ -14514,7 +14494,7 @@
     {
         "name": "Hawks",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "831",
         "value": "1658",
         "img": [
@@ -14532,7 +14512,7 @@
     {
         "name": "Tomura Shigaraki",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "832",
         "value": "2341",
         "img": [
@@ -14550,7 +14530,7 @@
     {
         "name": "Twice",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "833",
         "value": "2255",
         "img": [
@@ -14568,7 +14548,7 @@
     {
         "name": "Overhaul",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "834",
         "value": "2768",
         "img": [
@@ -14586,7 +14566,7 @@
     {
         "name": "Eri",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "835",
         "value": "2864",
         "img": [
@@ -14604,7 +14584,7 @@
     {
         "name": "Mirio Togata",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "836",
         "value": "1454",
         "img": [
@@ -14621,7 +14601,7 @@
     {
         "name": "Tamaki Amajiki",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "837",
         "value": "1751",
         "img": [
@@ -14639,7 +14619,7 @@
     {
         "name": "Nejire Hado",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "838",
         "value": "1861",
         "img": [
@@ -14657,7 +14637,7 @@
     {
         "name": "Mount Lady",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "839",
         "value": "1526",
         "img": [
@@ -14674,7 +14654,7 @@
     {
         "name": "Midnight",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "840",
         "value": "2134",
         "img": [
@@ -14692,7 +14672,7 @@
     {
         "name": "Mirko",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "841",
         "value": "2839",
         "img": [
@@ -14708,7 +14688,7 @@
     {
         "name": "Stain",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Hombre",
         "id": "842",
         "value": "1510",
         "img": [
@@ -14726,7 +14706,7 @@
     {
         "name": "Melissa Shield",
         "source": "My Hero Academia",
-        "gender": "Varios",
+        "gender": "Mujer",
         "id": "843",
         "value": "1805",
         "img": [
@@ -14736,6 +14716,18 @@
             "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_3.jpg",
             "https://raw.githubusercontent.com/nevi-dev/nevi-dev/main/fotos/melissa_shield/img_4.jpg"
         ],
+        "vid": [],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+    },
+    {
+        "name": "elliot fem",
+        "source": "forsaken",
+        "gender": "mujel",
+        "id": "844",
+        "value": "1500",
+        "img": [],
         "vid": [],
         "user": null,
         "status": "Libre",

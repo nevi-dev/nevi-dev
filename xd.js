@@ -17,13 +17,8 @@ const SCRAPER_HEADERS = {
 
 // --- LISTA DE MY HERO ACADEMIA ---
 const MHA_LIST = [
-    "Izuku Midoriya", "Katsuki Bakugo", "Shoto Todoroki", "Ochaco Uraraka", "Tenya Iida", 
-    "Tsuyu Asui", "Momo Yaoyorozu", "Eijiro Kirishima", "Denki Kaminari", "Kyoka Jiro", 
-    "Mina Ashido", "Fumikage Tokoyami", "Shota Aizawa", "All Might", "Endeavor", "Hawks", 
-    "Tomura Shigaraki", "Dabi", "Himiko Toga", "Twice", "Overhaul", "Eri", "Mirio Togata", 
-    "Tamaki Amajiki", "Nejire Hado", "Mount Lady", "Midnight", "Mirko", "Stain",
-    "Melissa Shield" 
-].map(n => ({ name: n, source: "My Hero Academia", gender: "Varios" }));
+    "elliot fem" 
+].map(n => ({ name: n, source: "forsaken", gender: "mujel" }));
 
 // --- FUNCIONES DE APOYO ---
 

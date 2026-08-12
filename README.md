@@ -1,46 +1,51 @@
-<h1 align="center">¡Hola a todos! 👋 Soy nevi-dev</h1>
-<h3 align="center">Un apasionado desarrollador de bots para WhatsApp</h3>
+# 👋 Hola, soy **nevi-dev**
 
-<p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&vCenter=true&random=true&width=435&lines=Desarrollador+de+Ruby-hoshino-Bot;Creador+de+Ellen-Joe-Bot-MD;Desarrollador+a+tiempo+parcial;%F0%9F%97%BF;%F0%9F%8D%9E%F0%9F%97%BF" alt="Typing SVG" /></a>
-</p>
+Desarrollador dominicano-venezolano apasionado por la automatización y la mensajería. Actualmente enfocado en crear bots de WhatsApp robustos, rápidos y llenos de funcionalidades para la comunidad hispanohablante.
 
-<br>
+---
 
-<p align="left"> 🚀 Actualmente estoy trabajando en <strong>Ellen-Joe-Bot-MD</strong>. </p>
-<p align="left"> 🌱 Estoy aprendiendo sobre <strong>bots de WhatsApp</strong>. </p>
-<p align="left"> 🤖 Soy programador de <strong>Ruby-Hoshino-Bot</strong>. </p>
-<p align="left"> 🌍 Nacionalidades: <strong>República Dominicana 🇩🇴 y Venezuela 🇻🇪</strong> </p>
-<p align="left"> 😄 Pronombre: <strong>Él</strong> </p>
+## 🚀 Proyecto actual: **Ellen-Joe-Bot-MD v5**
 
-<br>
+Mi principal caballo de batalla es **Ellen-Joe-Bot-MD**, un bot avanzado para WhatsApp que estoy llevando a su **quinta versión**. En esta etapa, el objetivo es:
 
-<h3 align="left">🛠️ Tecnologías y Herramientas que uso:</h3>
-<p align="left">
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>
-  <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
-  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a>
-  <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
-</p>
+- Mejorar la estabilidad y velocidad de respuesta.
+- Implementar una arquitectura más modular que facilite la adición de nuevos comandos.
+- Integrar nuevas APIs para ofrecer funciones interactivas (descarga de contenido, juegos, utilidades y más).
 
-<br>
+Estoy trabajando activamente en su desarrollo, optimizando el código y escuchando a la comunidad para hacerlo cada vez más útil.
 
-<h3 align="left">📊 Mis Estadísticas de GitHub:</h3>
-<p align="center">
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=nevi-dev&show_icons=true&locale=es&theme=dracula&count_private=true" alt="Estadísticas de GitHub de nevi-dev" />
-  <br><br>
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nevi-dev&layout=compact&locale=es&theme=dracula" alt="Lenguajes más usados por nevi-dev" />
-</p>
+---
 
-<br>
+## 🛠️ Tecnologías y herramientas
 
-<p align="center">
-  <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=nevi-dev&theme=dracula&locale=es" alt="Racha de Contribuciones de nevi-dev" />
-</p>
+- **Lenguajes:** JavaScript (Node.js), Python, HTML5.
+- **Frameworks y librerías:** Express, Baileys (WhatsApp Web multi-device), entre otras.
+- **Herramientas:** Git, GitHub Actions, VS Code.
 
-<br>
+---
 
-<h3 align="left">🐍 Mi Gráfico de Contribuciones es un Juego de Serpiente:</h3>
-<p align="center">
-  <img src="https://github.com/nevi-dev/nevi-dev/blob/output/github-contribution-grid-snake.svg" alt="Snake animation" />
-</p>
+## 📊 Estadísticas de GitHub
+
+![Estadísticas de nevi-dev](https://github-readme-stats.vercel.app/api?username=nevi-dev&show_icons=true&theme=radical)
+
+![Lenguajes más usados](https://github-readme-stats.vercel.app/api/top-langs/?username=nevi-dev&layout=compact&theme=radical)
+
+---
+
+## 🌍 Sobre mí
+
+- 🇩🇴🇻🇪 Orgulloso de mis raíces dominicanas y venezolanas.
+- 💬 Pregúntame sobre bots de WhatsApp, automatización o JavaScript.
+- 📚 Siempre aprendiendo: actualmente explorando nuevas técnicas de optimización para bots de mensajería.
+- 🤝 Abierto a colaborar en proyectos open source relacionados con mensajería o herramientas para desarrolladores.
+
+---
+
+## 📫 Conéctate conmigo
+
+- GitHub: [nevi-dev](https://github.com/nevi-dev)
+- (Aquí puedes añadir tus redes sociales o contacto si lo deseas)
+
+---
+
+⭐ **¡Gracias por visitar mi perfil!** Si te interesa el mundo de los bots o quieres aportar alguna idea, no dudes en escribirme. ¡Sigamos creando! 💻
